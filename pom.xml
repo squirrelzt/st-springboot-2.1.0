@@ -10,7 +10,9 @@
 		<module>application-context</module>
 		<module>actuator</module>
 		<module>aop</module>
-	</modules>
+		<module>callback</module>
+        <module>st-feign</module>
+    </modules>
 	<packaging>pom</packaging>
 
 	<name>st-springboot-2.1.0</name>
