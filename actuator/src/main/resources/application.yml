@@ -6,7 +6,10 @@ management:
     web:
       exposure:
         #加载所有的端点，默认只加载了info、health
-        include: '*'
+        include: 'prometheus'
+  metrics:
+    tags:
+      application: ${spring.application.name}
   endpoint:
     health:
       show-details: always
@@ -15,6 +18,8 @@ management:
       enabled: false
 
 spring:
+  application:
+    name: actuator
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test?useSSL=false&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true&serverTimezone=Hongkong
