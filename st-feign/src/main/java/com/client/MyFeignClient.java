@@ -3,6 +3,7 @@ package com.client;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 类名称: MyFeignClient
@@ -15,4 +16,7 @@ public interface MyFeignClient {
 
     @RequestMapping("/feign/data")
     String getData(@RequestBody Object object);
+
+    @RequestMapping("/feign/getname")
+    String getName(@RequestParam(value = "name") String name);
 }

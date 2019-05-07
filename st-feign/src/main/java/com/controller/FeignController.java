@@ -5,6 +5,7 @@ import com.client.MyFeignClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -22,6 +23,12 @@ public class FeignController {
 
     @Resource
     MyFeignClient myFeignClient;
+
+    @RequestMapping("/getname")
+    public String getName(@RequestParam String name) {
+        LOGGER.info("参数: " + JSON.toJSONString(name));
+        return myFeignClient.getName(name);
+    }
 
     @RequestMapping("/getData")
     public String getData(@RequestBody Object object) {
