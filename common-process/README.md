@@ -1,0 +1,1 @@
+QueryConvert实现类型转换
