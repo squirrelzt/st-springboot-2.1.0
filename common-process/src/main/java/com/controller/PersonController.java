@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.domain.Person;
 import com.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 类名称: PersonController
@@ -32,8 +34,9 @@ public class PersonController {
     }
 
     @RequestMapping("/queryByName")
-    public Person getPersonByName(@RequestBody String name) {
-        log.info("参数: " + name);
-        return personService.getPersonByName(name);
+    public Person getPersonByName(@RequestBody Object obj) {
+        Map jsonMap = (Map)JSON.toJSON(obj);
+        log.info("参数: " + jsonMap.get("name"));
+        return personService.getPersonByName((String)jsonMap.get("name"));
     }
 }

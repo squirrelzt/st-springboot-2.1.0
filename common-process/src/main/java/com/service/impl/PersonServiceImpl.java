@@ -21,9 +21,10 @@ import java.util.List;
 @Service
 public class PersonServiceImpl implements PersonService {
 
-    @Override
-    public List<Person> listPersons() {
-        List<MockPerson> mockPersonList = new ArrayList<>(3);
+    private static List<MockPerson> mockPersonList;
+
+    static {
+        mockPersonList = new ArrayList<>(3);
         MockPerson mockPerson1 = new MockPerson();
         mockPerson1.setName("squirrel");
         mockPerson1.setAge("20");
@@ -50,7 +51,9 @@ public class PersonServiceImpl implements PersonService {
         mockPerson3.setAccountName("PAB");
         mockPerson3.setAccount("62100000000000000003");
         mockPersonList.add(mockPerson3);
-
+    }
+    @Override
+    public List<Person> listPersons() {
         log.info("转换前数据List<MockPerson>: " + JSON.toJSONString(mockPersonList));
         List<Person> list = QueryConvert.INSTANCE.convertMockPerson(mockPersonList);
         log.info("转换后数据List<Person>: " + JSON.toJSONString(list));
@@ -59,16 +62,15 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person getPersonByName(String name) {
-        MockPerson mockPerson = new MockPerson();
-        mockPerson.setName("squirrel");
-        mockPerson.setAge("20");
-        mockPerson.setGender("man");
-        mockPerson.setSchool("qinghua");
-        mockPerson.setAccount("62100000000000000001");
-        mockPerson.setAccountName("ICBC");
-        log.info("转换前数据MockPerson: " + JSON.toJSONString(mockPerson));
-        Person person = QueryConvert.INSTANCE.convertMockPerson(mockPerson);
-        log.info("转换后数据Person: " + JSON.toJSONString(person));
+        Person person = null;
+        for (int i = 0; i < mockPersonList.size(); i++) {
+            MockPerson mockPerson = mockPersonList.get(i);
+            if (mockPerson.getName().equals(name)) {
+                log.info("转换前数据MockPerson: " + JSON.toJSONString(mockPerson));
+                person = QueryConvert.INSTANCE.convertMockPerson(mockPerson);
+                log.info("转换后数据Person: " + JSON.toJSONString(person));
+            }
+        }
         return person;
     }
 }
