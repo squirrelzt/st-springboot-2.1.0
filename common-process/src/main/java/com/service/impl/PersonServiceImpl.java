@@ -4,12 +4,15 @@ import com.alibaba.fastjson.JSON;
 import com.convert.QueryConvert;
 import com.domain.MockPerson;
 import com.domain.Person;
+import com.enums.ResultCodeEnum;
+import com.result.JsonResult;
 import com.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 类名称: PersonServiceImpl
@@ -61,7 +64,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person getPersonByName(String name) {
+    public JsonResult<Person> getPersonByName(String name) {
         Person person = null;
         for (int i = 0; i < mockPersonList.size(); i++) {
             MockPerson mockPerson = mockPersonList.get(i);
@@ -71,6 +74,10 @@ public class PersonServiceImpl implements PersonService {
                 log.info("转换后数据Person: " + JSON.toJSONString(person));
             }
         }
-        return person;
+        if (Objects.isNull(person)) {
+            return JsonResult.fail(ResultCodeEnum.FAIL.getResultCode(), ResultCodeEnum.FAIL.getResultMsg());
+        } else {
+            return JsonResult.ok(person);
+        }
     }
 }

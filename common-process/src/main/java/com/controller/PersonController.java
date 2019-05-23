@@ -1,9 +1,13 @@
 package com.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.check.Asserts;
+import com.check.Check;
 import com.domain.Person;
+import com.result.JsonResult;
 import com.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,9 +38,13 @@ public class PersonController {
     }
 
     @RequestMapping("/queryByName")
-    public Person getPersonByName(@RequestBody Object obj) {
+    public JsonResult<Person> getPersonByName(@RequestBody Object obj) {
         Map jsonMap = (Map)JSON.toJSON(obj);
-        log.info("参数: " + jsonMap.get("name"));
-        return personService.getPersonByName((String)jsonMap.get("name"));
+        Asserts.isNotNull(jsonMap.get("name"), "name 不能为空");
+        String name = (String)jsonMap.get("name");
+        log.info("参数: " + name);
+        JsonResult<Person> jsonResult = personService.getPersonByName(name);
+        Check.checkResultParam(jsonResult);
+        return jsonResult;
     }
 }

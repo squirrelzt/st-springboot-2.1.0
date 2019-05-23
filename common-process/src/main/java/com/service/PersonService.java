@@ -1,6 +1,7 @@
 package com.service;
 
 import com.domain.Person;
+import com.result.JsonResult;
 
 import java.util.List;
 
@@ -14,5 +15,5 @@ public interface PersonService {
 
     List<Person> listPersons();
 
-    Person getPersonByName(String name);
+    JsonResult<Person> getPersonByName(String name);
 }
