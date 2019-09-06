@@ -1,0 +1,6 @@
+spring:
+    jackson:
+      time-zone: GMT+8:00
+      serialization:
+        write-dates-as-timestamps: true
+    #    date-format: yyyy-MM-dd HH:mm:ss

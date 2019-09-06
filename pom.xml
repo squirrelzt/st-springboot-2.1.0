@@ -16,6 +16,7 @@
         <module>common-process</module>
         <module>st-spi</module>
         <module>st-spi-client</module>
+        <module>timestamp-convert</module>
     </modules>
 	<packaging>pom</packaging>
 
@@ -53,6 +54,12 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.60</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
