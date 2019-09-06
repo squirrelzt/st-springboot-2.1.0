@@ -3,7 +3,9 @@ package com.controller;
 import com.domain.Course;
 import com.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
@@ -20,8 +22,9 @@ public class TimestampController {
         this.courseService = courseService;
     }
 
-    @RequestMapping("/course")
-    public List<Course> listCourses() {
+    @PostMapping("/course")
+    public List<Course> listCourses(@RequestParam("id") Long id) {
+        System.out.println(id);
         try {
             return courseService.listCourses();
         } catch (ParseException e) {
