@@ -8,6 +8,12 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 类名称: Course
+ * 类描述: 课程
+ * @author squirrel
+ * @date 2019-09-09
+ */
 @Data
 public class Course {
 
