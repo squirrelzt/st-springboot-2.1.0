@@ -38,4 +38,5 @@ public class Course {
     private Date createDate;
 
     private Date updateDate;
+
 }
