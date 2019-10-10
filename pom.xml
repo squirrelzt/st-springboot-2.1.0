@@ -17,6 +17,7 @@
         <module>st-spi</module>
         <module>st-spi-client</module>
         <module>timestamp-convert</module>
+        <module>st-security</module>
     </modules>
 	<packaging>pom</packaging>
 
