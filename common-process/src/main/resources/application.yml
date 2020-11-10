@@ -1,2 +1,6 @@
 myFilter:
   port: 8081
+
+remote:
+  ip: 192.168.1.1
+  port: 8082
