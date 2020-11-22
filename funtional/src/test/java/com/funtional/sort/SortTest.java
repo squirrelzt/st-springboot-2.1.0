@@ -18,9 +18,7 @@ public class SortTest {
         List<String> sortedList = list.stream().sorted().collect(toList());
         assertEquals("Beijing", sortedList.get(0));
 
-        List<String> sortedListFunction = list.stream().sorted( (a, b) -> {
-            return a.compareTo(b);
-        }).collect(toList());
+        List<String> sortedListFunction = list.stream().sorted(String::compareTo).collect(toList());
         assertEquals("Beijing", sortedListFunction.get(0));
 
     }
