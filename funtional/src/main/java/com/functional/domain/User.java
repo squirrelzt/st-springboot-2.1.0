@@ -10,6 +10,7 @@ import java.util.List;
 public class User {
     private Integer id;
     private String username;
+    private Integer age;
     private String name;
     private String mobile;
     private List<String> roles;
