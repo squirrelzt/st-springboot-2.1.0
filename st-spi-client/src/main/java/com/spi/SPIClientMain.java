@@ -1,5 +1,7 @@
 package com.spi;
 
+import com.foo.demo.IShout;
+
 import java.util.ServiceLoader;
 
 public class SPIClientMain {
