@@ -5,6 +5,7 @@ import lombok.val;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -20,6 +21,9 @@ public class SortTest {
 
         List<String> sortedListFunction = list.stream().sorted(String::compareTo).collect(toList());
         assertEquals("Beijing", sortedListFunction.get(0));
+
+        List<String> sortedListComparatorFunc = list.stream().sorted(Comparator.naturalOrder()).collect(toList());
+        assertEquals("Beijing", sortedListComparatorFunc.get(0));
 
     }
 }
