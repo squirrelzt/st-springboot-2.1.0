@@ -19,7 +19,8 @@
         <module>timestamp-convert</module>
         <module>st-security</module>
         <module>st-jjwt</module>
-    </modules>
+		<module>funtional</module>
+	</modules>
 	<packaging>pom</packaging>
 
 	<name>st-springboot-2.1.0</name>
