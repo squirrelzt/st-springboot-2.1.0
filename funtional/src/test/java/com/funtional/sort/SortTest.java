@@ -1,7 +1,10 @@
 package com.funtional.sort;
 
 
+import com.functional.domain.Home;
+import com.functional.domain.User;
 import lombok.val;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -15,6 +18,8 @@ public class SortTest {
 
     @Test
     public void givenCollections_withStream_thenSort() {
+
+
         List<String> list = Arrays.asList("Beijing", "Shagnhai", "Hebei");
         List<String> sortedList = list.stream().sorted().collect(toList());
         assertEquals("Beijing", sortedList.get(0));
@@ -32,7 +37,24 @@ public class SortTest {
 
         // 降序排列
         List<String> sortedListComparatorReverseFunc = list.stream().sorted(Comparator.reverseOrder()).collect(toList());
-        assertEquals("Beijing", sortedListComparatorReverseFunc.get(0));
+        assertEquals("Shagnhai", sortedListComparatorReverseFunc.get(0));
+
+        User[] userArray = {
+                User.builder().id(1).username("java").name("11").mobile("13111111111").build(),
+                User.builder().id(2).username("javascript").name("2020").mobile("13222222222").build(),
+                User.builder().id(3).username("golang").name("1.19").mobile("13333333333").build(),
+        };
+        List<User> userList = Arrays.asList(userArray);
+        List<User> sortedUserList = userList.stream().sorted((a, b) -> {
+            return a.getUsername().compareTo(b.getUsername());
+        }).collect(toList());
+        assertEquals("golang", sortedUserList.get(0).getUsername());
+
+        List<User> sortedComparatorUserList = userList.stream().sorted(Comparator.comparing(user -> user.getUsername(), (a, b) -> {
+            return a.compareTo(b);
+        })).collect(toList());
+        assertEquals("golang", sortedUserList.get(0).getUsername());
+
 
     }
 }
