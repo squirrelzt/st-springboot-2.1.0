@@ -1,4 +1,4 @@
-package com.funtional.sort;
+package com.functional.sort;
 
 
 import com.functional.domain.User;
