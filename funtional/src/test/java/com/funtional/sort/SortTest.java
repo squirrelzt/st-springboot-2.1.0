@@ -19,11 +19,20 @@ public class SortTest {
         List<String> sortedList = list.stream().sorted().collect(toList());
         assertEquals("Beijing", sortedList.get(0));
 
+        //降序排列
+        List<String> sortedListReverse = list.stream().sorted((a, b) -> {
+            return b.compareTo(a);
+        }).collect(toList());
+
         List<String> sortedListFunction = list.stream().sorted(String::compareTo).collect(toList());
         assertEquals("Beijing", sortedListFunction.get(0));
 
         List<String> sortedListComparatorFunc = list.stream().sorted(Comparator.naturalOrder()).collect(toList());
         assertEquals("Beijing", sortedListComparatorFunc.get(0));
+
+        // 降序排列
+        List<String> sortedListComparatorReverseFunc = list.stream().sorted(Comparator.reverseOrder()).collect(toList());
+        assertEquals("Beijing", sortedListComparatorReverseFunc.get(0));
 
     }
 }
