@@ -1,10 +1,7 @@
 package com.funtional.sort;
 
 
-import com.functional.domain.Home;
 import com.functional.domain.User;
-import lombok.val;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.text.Collator;
@@ -12,7 +9,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collector;
 
 import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.assertEquals;
