@@ -7,9 +7,12 @@ import lombok.val;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.Collator;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collector;
 
 import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.assertEquals;
@@ -50,11 +53,17 @@ public class SortTest {
         }).collect(toList());
         assertEquals("golang", sortedUserList.get(0).getUsername());
 
-        List<User> sortedComparatorUserList = userList.stream().sorted(Comparator.comparing(user -> user.getUsername(), (a, b) -> {
+        List<User> sortedComparatorUserList = userList.stream().sorted(Comparator.comparing(user ->
+                user.getUsername(), (a, b) -> {
             return a.compareTo(b);
         })).collect(toList());
         assertEquals("golang", sortedUserList.get(0).getUsername());
 
-
+        Collator sortedByZhCN = Collator.getInstance(Locale.SIMPLIFIED_CHINESE);
+        List<User> sortedComparatorLocalUserList = userList.stream().sorted(Comparator.comparing(
+                User::getUsername,
+                sortedByZhCN
+        )).collect(toList());
+        assertEquals("golang", sortedUserList.get(0).getUsername());
     }
 }
